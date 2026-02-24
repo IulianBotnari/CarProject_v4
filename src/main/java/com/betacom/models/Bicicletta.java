@@ -2,6 +2,8 @@ package com.betacom.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,10 +20,13 @@ public class Bicicletta extends Veicolo{
 	@Column(name = "numero_marce", nullable = false)
 	private Integer numeroMarce;
 	
-	@Column(name = "id_freno", nullable = false)
-	private Integer idFreno;
+	@OneToOne
+	@JoinColumn(name = "id_freno")
+	private Freno idFreno;
 	
-	@Column(name = "id_sospensione", nullable = false)
-	private Integer idSospensione;
+
+	@OneToOne
+	@JoinColumn(name = "id_sospensione")
+	private Sospensione idSospensione;
 	
 }

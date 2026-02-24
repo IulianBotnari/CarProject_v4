@@ -1,7 +1,12 @@
 set client_min_messages = WARNING;
+alter table if exists biciclette drop constraint if exists FKhujb0c4ogf1nsk9hnxobqdeko;
+alter table if exists biciclette drop constraint if exists FK3cjv3q83j01ku3nc0j5l5l1o4;
 alter table if exists biciclette drop constraint if exists FKscv2bmnwrgijta3evy3hjt50s;
 alter table if exists macchine drop constraint if exists FKpr95l56lnnp1uxuaemnx6fd2y;
 alter table if exists moto drop constraint if exists FKlgrryao9i5do671am9oe21cjs;
+alter table if exists veicoli drop constraint if exists FK573psox36uki2jeciee7yfs82;
+alter table if exists veicoli drop constraint if exists FKfnj6d8ledmyr1pj05o2aunbga;
+alter table if exists veicoli drop constraint if exists FK9fby65ukehcfx0sd0pmaewyry;
 drop table if exists alimentzioni cascade;
 drop table if exists biciclette cascade;
 drop table if exists categorie cascade;
