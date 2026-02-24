@@ -1,0 +1,13 @@
+set client_min_messages = WARNING;
+alter table if exists biciclette drop constraint if exists FKscv2bmnwrgijta3evy3hjt50s;
+alter table if exists macchine drop constraint if exists FKpr95l56lnnp1uxuaemnx6fd2y;
+alter table if exists moto drop constraint if exists FKlgrryao9i5do671am9oe21cjs;
+drop table if exists alimentzioni cascade;
+drop table if exists biciclette cascade;
+drop table if exists categorie cascade;
+drop table if exists colori cascade;
+drop table if exists freni cascade;
+drop table if exists macchine cascade;
+drop table if exists moto cascade;
+drop table if exists sospensioni cascade;
+drop table if exists veicoli cascade;
