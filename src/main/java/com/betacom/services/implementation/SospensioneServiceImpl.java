@@ -37,7 +37,7 @@ public class SospensioneServiceImpl implements InterfaceSospensioneService{
 		
 		
 		try {
-			sospensione.setSospensione(request.getSospensione().trim().toUpperCase());
+			sospensione.setSospensione(request.getSospensione().toUpperCase().trim());
 		} catch (Exception e) {
 			throw new Exception("Sospensione non valida " + e.getMessage());
 		}

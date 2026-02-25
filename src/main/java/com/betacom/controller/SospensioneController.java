@@ -3,13 +3,13 @@ package com.betacom.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.betacom.dto.input.SospensioneDTOReq;
 import com.betacom.services.interfaces.InterfaceSospensioneService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,8 +23,6 @@ public class SospensioneController {
 	
 	@PostMapping(path = "create")
 	public ResponseEntity<Object> create(@RequestBody(required = true) SospensioneDTOReq request){
-		System.out.println("metodo post " + request);
-		log.debug("request {} ", request.toString());
 		Object response = null;
 		
 		HttpStatus status = HttpStatus.CREATED;
