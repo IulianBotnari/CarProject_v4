@@ -1,26 +1,28 @@
 package com.betacom.utils;
 
 import com.betacom.dto.input.MotoDTOReq;
+import com.betacom.dto.input.VeicoloDTOReq;
 import com.betacom.models.Alimentazione;
 import com.betacom.models.Categoria;
 import com.betacom.models.Colore;
 import com.betacom.models.Moto;
+import com.betacom.models.Veicolo;
 
 public class CostruttoreModels {
 	
-	public static Moto createMoto(MotoDTOReq request) {
+	public static Veicolo createVeicolo(VeicoloDTOReq request) {
 			
-		return Moto.builder()
+		return Veicolo.builder()
 				.idVeicolo(request.getIdVeicolo())
 				.annoProduzione(request.getAnnoProduzione())
-				.cilindrata(request.getCilindrata())
+//				.cilindrata(request.getCilindrata())
 				.alimentazione(createAlimentazione(request.getAlimentazione()))
 				.categoria(createCategoria(request.getCategoria()))
 				.colore(createColore(request.getColore()))
 				.marca(request.getMarca())
 				.numeroRuote(request.getNumeroRuote())
 				.modello(request.getModello())
-				.targa(request.getTarga())
+//				.targa(request.getTarga())
 				.tipoVeicolo(request.getTipoVeicolo())
 				.build();
 		
