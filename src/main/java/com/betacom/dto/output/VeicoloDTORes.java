@@ -9,7 +9,9 @@ import com.betacom.models.Colore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
+@SuperBuilder
 @Getter
 @Setter
 @ToString

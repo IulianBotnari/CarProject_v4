@@ -21,6 +21,6 @@ public class Sospensione {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idSospensione;
 	
-	@Column(name = "sospensione", nullable = false)
+	@Column(name = "sospensione", nullable = false, unique = true)
 	private String sospensione;
 }

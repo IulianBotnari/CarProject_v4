@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.betacom.dto.input.SospensioneDTOReq;
 import com.betacom.services.interfaces.InterfaceSospensioneService;
 
-import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

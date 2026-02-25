@@ -11,7 +11,9 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
@@ -22,6 +24,8 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @Inheritance(strategy = InheritanceType.JOINED)
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class Veicolo {
 	
 	@Id
@@ -37,15 +41,15 @@ public abstract class Veicolo {
 	
 
 	@OneToOne
-	@JoinColumn(name = "id_alimentazione")
-	private Alimentazione idAlimentazione;
+	@JoinColumn(name = "alimentazione")
+	private Alimentazione alimentazione;
 	
 	@OneToOne
-	@JoinColumn(name = "id_categoria")
-	private Categoria idCategoria;
+	@JoinColumn(name = "categoria")
+	private Categoria categoria;
 	@OneToOne
-	@JoinColumn(name = "id_colore")
-	private Colore idColore;
+	@JoinColumn(name = "colore")
+	private Colore colore;
 	
 	@Column(name = "marca", nullable = false)
 	private String marca;

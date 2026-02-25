@@ -20,7 +20,7 @@ public class Freno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idFreno;
 	
-	@Column(name = "freno", nullable = false)
+	@Column(name = "freno", nullable = false, unique = true)
 	private String freno;
 
 }

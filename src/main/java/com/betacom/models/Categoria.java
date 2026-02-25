@@ -6,9 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+@Builder
 @Entity
 @Table(name = "categorie")
 @Getter
@@ -20,6 +22,6 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idCategoria;
 	
-	@Column(name = "categoria", nullable = false)
+	@Column(name = "categoria", nullable = false, unique = true)
 	private String categoria;
 }

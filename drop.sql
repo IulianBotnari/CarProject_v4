@@ -4,9 +4,9 @@ alter table if exists biciclette drop constraint if exists FK3cjv3q83j01ku3nc0j5
 alter table if exists biciclette drop constraint if exists FKscv2bmnwrgijta3evy3hjt50s;
 alter table if exists macchine drop constraint if exists FKpr95l56lnnp1uxuaemnx6fd2y;
 alter table if exists moto drop constraint if exists FKlgrryao9i5do671am9oe21cjs;
-alter table if exists veicoli drop constraint if exists FK573psox36uki2jeciee7yfs82;
-alter table if exists veicoli drop constraint if exists FKfnj6d8ledmyr1pj05o2aunbga;
-alter table if exists veicoli drop constraint if exists FK9fby65ukehcfx0sd0pmaewyry;
+alter table if exists veicoli drop constraint if exists FKsr36v1biky9738g54rma6x9ye;
+alter table if exists veicoli drop constraint if exists FKgxsfdmeosk0k2bn4338lfrhi2;
+alter table if exists veicoli drop constraint if exists FKg6l2ldmbgjpmq6slnhrgq4yuq;
 drop table if exists alimentzioni cascade;
 drop table if exists biciclette cascade;
 drop table if exists categorie cascade;

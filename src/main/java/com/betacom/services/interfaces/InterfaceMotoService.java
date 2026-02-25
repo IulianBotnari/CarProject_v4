@@ -12,5 +12,5 @@ public interface InterfaceMotoService {
 	
 	void update(MotoDTOReq request) throws Exception;
 	
-	void delete(MotoDTOReq request) throws Exception;
+	void delete(Integer id) throws Exception;
 }

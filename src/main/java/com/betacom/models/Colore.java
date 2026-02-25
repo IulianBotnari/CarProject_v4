@@ -6,9 +6,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+
+@Builder
 @Entity
 @Table(name = "colori")
 @Getter
@@ -20,7 +23,7 @@ public class Colore {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idColore;
 	
-	@Column(name = "colore", nullable = false)
+	@Column(name = "colore", nullable = false, unique = true)
 	private String colore;
 
 }
