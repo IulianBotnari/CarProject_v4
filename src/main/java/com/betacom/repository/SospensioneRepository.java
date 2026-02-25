@@ -8,4 +8,6 @@ import com.betacom.models.Sospensione;
 @Repository
 public interface SospensioneRepository extends JpaRepository<Sospensione, Integer>{
 
+	
+	
 }

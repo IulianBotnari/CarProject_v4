@@ -13,5 +13,5 @@ public interface InterfaceSospensioneService {
 	
 	void update(SospensioneDTOReq request) throws Exception;
 	
-	void delete(SospensioneDTOReq request) throws Exception;
+	void delete(Integer id) throws Exception;
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.betacom.dto.input.MotoDTOReq;
 import com.betacom.dto.output.MotoDTORes;
+import com.betacom.models.Moto;
 import com.betacom.repository.MotoRepository;
 import com.betacom.services.interfaces.InterfaceMotoService;
 
@@ -26,7 +27,7 @@ public class MotoServiceImpl implements InterfaceMotoService{
 
 	@Override
 	public void create(MotoDTOReq request) throws Exception {
-		// TODO Auto-generated method stub
+	 
 		
 	}
 

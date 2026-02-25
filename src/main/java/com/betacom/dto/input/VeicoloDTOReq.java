@@ -15,11 +15,11 @@ public class VeicoloDTOReq {
 
 	private Integer numeroRuote;
 	
-	private Integer idAlimentazione;
+	private String alimentazione;
 	
-	private Integer idCategoria;
+	private String categoria;
 
-	private Integer idColore;
+	private String colore;
 
 	private String marca;
 

@@ -7,12 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class MotoDTOReq {
-	
-
-	private Integer idMoto;
-
-	private Integer idVeicolo;
+public class MotoDTOReq extends VeicoloDTOReq{
 
 	private String targa;
 

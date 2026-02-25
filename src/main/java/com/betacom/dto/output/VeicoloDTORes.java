@@ -2,6 +2,10 @@ package com.betacom.dto.output;
 
 
 
+import com.betacom.models.Alimentazione;
+import com.betacom.models.Categoria;
+import com.betacom.models.Colore;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,11 +20,11 @@ public class VeicoloDTORes {
 
 	private Integer numeroRuote;
 	
-	private Integer idAlimentazione;
+	private Alimentazione alimentazione;
 	
-	private Integer idCategoria;
+	private Categoria categoria;
 
-	private Integer idColore;
+	private Colore colore;
 
 	private String marca;
 
