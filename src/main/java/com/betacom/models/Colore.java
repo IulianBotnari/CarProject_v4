@@ -6,8 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
@@ -16,6 +18,8 @@ import lombok.Setter;
 @Table(name = "colori")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Colore {
 	
 	@Id
@@ -23,7 +27,7 @@ public class Colore {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idColore;
 	
-	@Column(name = "colore", nullable = false, unique = true)
+	@Column(name = "colore", nullable = false, unique = false)
 	private String colore;
 
 }

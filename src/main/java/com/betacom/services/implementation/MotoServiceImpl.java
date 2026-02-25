@@ -33,13 +33,15 @@ public class MotoServiceImpl implements InterfaceMotoService{
 
 	@Override
 	public void create(MotoDTOReq request) throws Exception {
-		
+		System.out.println("Moto creata in create moto impl" );
 		Moto result = models.createMoto(request);
+		
+		System.out.println("Moto creata in create moto impl" + result.toString());
 		
 		try {
 			motoRepo.save(result);
 		} catch (Exception e) {
-			System.out.println("Errore durante il salvataggio della moto: " + request.getTarga() + "\nErrore: " + e.getMessage());
+			System.out.println("Errore durante il salvataggio della moto: " + request.toString() + "\nErrore: " + e.getMessage());
 		}
 	
 	 

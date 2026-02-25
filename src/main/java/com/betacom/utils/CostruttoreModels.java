@@ -17,7 +17,6 @@ import com.betacom.repository.AlimentazioneRepository;
 import com.betacom.repository.CategoriaRepository;
 import com.betacom.repository.ColoreRepository;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -42,10 +41,26 @@ public class CostruttoreModels {
 	}
 	
 	public Moto createMoto(MotoDTOReq req) throws Exception {
-		Moto moto = (Moto) createVeicolo(req);
-		moto.setTarga(req.getTarga());
-		moto.setCilindrata(req.getCilindrata());
-		return moto;
+		System.out.println("costruttore models moto");
+
+			/*Moto moto = (Moto) createVeicolo(req);
+			moto.setTarga(req.getTarga());
+			moto.setCilindrata(req.getCilindrata());*/
+			return Moto.builder()
+					.idVeicolo(null)
+					.annoProduzione(req.getAnnoProduzione())
+					.alimentazione(createAlimentazione(req.getIdAlimentazione()))
+					.categoria(createCategoria(req.getIdCategoria()))
+					.colore(createColore(req.getIdColore()))
+					.marca(req.getMarca())
+					.numeroRuote(req.getNumeroRuote())
+					.modello(req.getModello())
+					.tipoVeicolo(req.getTipoVeicolo())
+					.targa(req.getTarga())
+					.cilindrata(req.getCilindrata())
+					.build();
+
+
 	}
 	
 	private Veicolo createVeicolo(VeicoloDTOReq request) throws Exception {

@@ -34,7 +34,7 @@ public class MotoController {
 		
 		try {
 			
-			
+			System.out.println("Try catch moto create");
 			motoService.create(request);
 			response = "Moto salvata con succeso";
 		} catch (Exception e) {
