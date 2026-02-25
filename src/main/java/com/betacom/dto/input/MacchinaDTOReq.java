@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 
-public class MacchinaDTOReq {
+public class MacchinaDTOReq extends VeicoloDTOReq {
 
 	private Integer idMacchina;
 

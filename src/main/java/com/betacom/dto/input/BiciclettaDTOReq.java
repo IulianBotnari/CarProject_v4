@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BiciclettaDTOReq {
+public class BiciclettaDTOReq extends VeicoloDTOReq {
 
 	private Integer idBiciletta;
 
