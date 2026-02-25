@@ -20,6 +20,7 @@ import lombok.AllArgsConstructor;
 public class MotoServiceImpl implements InterfaceMotoService{
 	
 	private final MotoRepository motoRepo;
+	private final CostruttoreModels models;
 	
 	
 	@Override
@@ -33,7 +34,7 @@ public class MotoServiceImpl implements InterfaceMotoService{
 	@Override
 	public void create(MotoDTOReq request) throws Exception {
 		
-		Moto result = CostruttoreModels.createMoto(request);
+		Moto result = models.createMoto(request);
 		
 		try {
 			motoRepo.save(result);
@@ -49,7 +50,7 @@ public class MotoServiceImpl implements InterfaceMotoService{
 	public void update(MotoDTOReq request) throws Exception {
 		Moto moto = motoRepo.findById(request.getIdVeicolo()).orElseThrow(()-> new Exception("Moto non trovata"));
 		
-		moto = CostruttoreModels.createMoto(request);
+		moto = models.createMoto(request);
 		
 		motoRepo.save(moto);
 		

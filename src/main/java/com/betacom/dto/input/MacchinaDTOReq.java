@@ -12,8 +12,6 @@ public class MacchinaDTOReq extends VeicoloDTOReq {
 
 	private Integer idMacchina;
 
-	private Integer idVeicolo;
-
 	private Integer porte;
 
 	private String targa;

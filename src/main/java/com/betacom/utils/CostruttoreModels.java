@@ -1,5 +1,7 @@
 package com.betacom.utils;
 
+import org.springframework.stereotype.Component;
+
 import com.betacom.dto.input.BiciclettaDTOReq;
 import com.betacom.dto.input.MacchinaDTOReq;
 import com.betacom.dto.input.MotoDTOReq;
@@ -11,16 +13,27 @@ import com.betacom.models.Colore;
 import com.betacom.models.Macchina;
 import com.betacom.models.Moto;
 import com.betacom.models.Veicolo;
+import com.betacom.repository.AlimentazioneRepository;
+import com.betacom.repository.CategoriaRepository;
+import com.betacom.repository.ColoreRepository;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
+@Component
+@RequiredArgsConstructor
 public class CostruttoreModels {
+	private final CategoriaRepository cateR;
+	private final AlimentazioneRepository alimR;
+	private final ColoreRepository coloR;
 	
-	public static Bicicletta createBici(BiciclettaDTOReq req) {
+	public Bicicletta createBici(BiciclettaDTOReq req) throws Exception {
 		Bicicletta bici = (Bicicletta) createVeicolo(req);
 		bici.setNumeroMarce(req.getNumeroMarce());
 		return bici;
 	}
 	
-	public static Macchina createMacchina(MacchinaDTOReq req) {
+	public Macchina createMacchina(MacchinaDTOReq req) throws Exception {
 		Macchina mac = (Macchina) createVeicolo(req);
 		mac.setPorte(req.getPorte());
 		mac.setTarga(req.getTarga());
@@ -28,20 +41,20 @@ public class CostruttoreModels {
 		return mac;
 	}
 	
-	public static Moto createMoto(MotoDTOReq req) {
+	public Moto createMoto(MotoDTOReq req) throws Exception {
 		Moto moto = (Moto) createVeicolo(req);
 		moto.setTarga(req.getTarga());
 		moto.setCilindrata(req.getCilindrata());
 		return moto;
 	}
 	
-	private static Veicolo createVeicolo(VeicoloDTOReq request) {
+	private Veicolo createVeicolo(VeicoloDTOReq request) throws Exception {
 		return Veicolo.builder()
 				.idVeicolo(request.getIdVeicolo())
 				.annoProduzione(request.getAnnoProduzione())
-				.alimentazione(createAlimentazione(request.getAlimentazione()))
-				.categoria(createCategoria(request.getCategoria()))
-				.colore(createColore(request.getColore()))
+				.alimentazione(createAlimentazione(request.getIdAlimentazione()))
+				.categoria(createCategoria(request.getIdCategoria()))
+				.colore(createColore(request.getIdColore()))
 				.marca(request.getMarca())
 				.numeroRuote(request.getNumeroRuote())
 				.modello(request.getModello())
@@ -49,18 +62,22 @@ public class CostruttoreModels {
 				.build();
 	}
 	
-	private static Categoria createCategoria(String categoria) {
+	private Categoria createCategoria(Integer idCategoria) throws Exception {
+		Categoria cat = cateR.findById(idCategoria).orElseThrow(() -> new Exception("Categoria non trovata"));
 		
-		return Categoria.builder().idCategoria(0).categoria(categoria).build();
+		return Categoria.builder().idCategoria(idCategoria).categoria(cat.getCategoria()).build();
 	}
 	
-	private static Alimentazione createAlimentazione(String alimentazione) {
-		
-		return Alimentazione.builder().idAlimentazione(0).alimentazione(alimentazione).build();
+	private Alimentazione createAlimentazione(Integer idAlimentazione) throws Exception {
+		Alimentazione alim = alimR.findById(idAlimentazione).orElseThrow(() -> new Exception("Alimentazione non trovata"));
+
+		return Alimentazione.builder().idAlimentazione(idAlimentazione).alimentazione(alim.getAlimentazione()).build();
 	}
 	
-	private static Colore createColore(String colore) {
-		return Colore.builder().idColore(0).colore(colore).build();
+	private Colore createColore(Integer idColore) throws Exception {
+		Colore colore = coloR.findById(idColore).orElseThrow(() -> new Exception("Colore non trovato"));
+		
+		return Colore.builder().idColore(idColore).colore(colore.getColore()).build();
 	}
 
 }
