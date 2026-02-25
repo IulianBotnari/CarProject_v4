@@ -26,7 +26,7 @@ import lombok.experimental.SuperBuilder;
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class Veicolo {
+public class Veicolo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
