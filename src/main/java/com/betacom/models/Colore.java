@@ -18,6 +18,8 @@ import lombok.Setter;
 @Table(name = "colori")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Colore {
 	
 	@Id
@@ -25,7 +27,7 @@ public class Colore {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idColore;
 	
-	@Column(name = "colore", nullable = false, unique = true)
+	@Column(name = "colore", nullable = false, unique = false)
 	private String colore;
 
 }

@@ -19,6 +19,8 @@ import lombok.Setter;
 @Table(name = "alimentzioni")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Alimentazione {
 	
 	@Id
@@ -26,7 +28,7 @@ public class Alimentazione {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idAlimentazione;
 
-	@Column(name = "alimentazione", nullable = false, unique = true)
+	@Column(name = "alimentazione", nullable = false, unique = false)
 	private String alimentazione;
 
 	
