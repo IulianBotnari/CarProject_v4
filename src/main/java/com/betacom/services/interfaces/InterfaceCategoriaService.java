@@ -12,5 +12,5 @@ public interface InterfaceCategoriaService {
 	
 	void update(CategoriaDTOReq request) throws Exception;
 	
-	void delete(CategoriaDTOReq request) throws Exception;
+	void delete(Integer id) throws Exception;
 }
