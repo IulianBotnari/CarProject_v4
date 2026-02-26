@@ -11,5 +11,5 @@ public interface InterfaceColoreService {
 	
 	void update(ColoreDTOReq request) throws Exception;
 	
-	void delete(ColoreDTOReq request) throws Exception;
+	void delete(Integer id) throws Exception;
 }
