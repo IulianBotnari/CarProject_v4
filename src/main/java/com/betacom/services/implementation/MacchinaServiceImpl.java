@@ -1,45 +1,97 @@
 package com.betacom.services.implementation;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.betacom.dto.input.MacchinaDTOReq;
 import com.betacom.dto.output.MacchinaDTORes;
+import com.betacom.models.Macchina;
 import com.betacom.repository.MacchinaRepository;
 import com.betacom.services.interfaces.InterfaceMacchinaService;
+import com.betacom.utils.CostruttoreModels;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @AllArgsConstructor
 @Service
 public class MacchinaServiceImpl implements InterfaceMacchinaService{
 	
 	private final MacchinaRepository macchinaRepo;
-	
+	private final CostruttoreModels models;
 	
 	@Override
 	public List<MacchinaDTORes> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+
+	    List<Macchina> lM = macchinaRepo.findAll();
+	    
+	    return lM.stream()
+	            .map(v -> MacchinaDTORes.builder()
+	                    .tipoVeicolo(v.getTipoVeicolo())
+	                    .numeroRuote(v.getNumeroRuote())
+	                    .marca(v.getMarca())
+	                    .modello(v.getModello())
+	                    // prendo id veicolo al momento anche per id macchina ma è sbagliato!!!
+	                    .idMacchina(v.getIdVeicolo())
+	                    .idVeicolo(v.getIdVeicolo())
+	            		.annoProduzione(v.getAnnoProduzione())
+	                    .targa(v.getTarga())
+	                    .porte(v.getPorte())
+	                    .cilindrata(v.getCilindrata())
+	                    .alimentazione(v.getAlimentazione() != null 
+                        ? v.getAlimentazione() 
+                        : null)
+	                    .categoria(v.getCategoria() != null 
+                        ? v.getCategoria() 
+                        : null)
+	                    .colore(v.getColore() != null 
+                        ? v.getColore() 
+                        : null)
+	                    .build())
+	            .collect(Collectors.toList());
+	    
 	}
+
 
 	@Override
 	public void create(MacchinaDTOReq request) throws Exception {
-		// TODO Auto-generated method stub
+		log.debug("create {}", request);
 		
+		Macchina mac = new Macchina();
+		models.populateVeicolo(mac, request);
+		mac.setPorte(request.getPorte());
+		mac.setTarga(request.getTarga());
+		mac.setCilindrata(request.getCilindrata());
+		
+		macchinaRepo.save(mac);
 	}
 
 	@Override
 	public void update(MacchinaDTOReq request) throws Exception {
-		// TODO Auto-generated method stub
+		log.debug("update {}", request);
 		
+		Macchina mac = macchinaRepo.findById(request.getIdMacchina()).orElseThrow(() -> new Exception("Macchina non trovata"));
+		models.updateVeicolo(mac, request);
+		
+		if(request.getPorte() != null)
+			mac.setPorte(request.getPorte());
+		if(request.getTarga() != null)
+			mac.setTarga(request.getTarga());
+		if(request.getCilindrata() != null)
+			mac.setCilindrata(request.getCilindrata());
+		
+		macchinaRepo.save(mac);
 	}
 
 	@Override
-	public void delete(MacchinaDTOReq request) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public void delete(Integer id) throws Exception {
+		log.debug("delete {}", id);
+		Macchina mac = macchinaRepo.findById(id).orElseThrow(() -> new Exception("Macchina non trovata"));
+	
+		macchinaRepo.delete(mac);
 	}
 
 }

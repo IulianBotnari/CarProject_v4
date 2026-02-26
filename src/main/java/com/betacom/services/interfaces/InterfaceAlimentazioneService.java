@@ -11,5 +11,5 @@ public interface InterfaceAlimentazioneService {
 	
 	void update(AlimentazioneDTOReq request) throws Exception;
 	
-	void delete(AlimentazioneDTOReq request) throws Exception;
+	void delete(Integer id) throws Exception;
 }

@@ -34,10 +34,10 @@ public class MotoServiceImpl implements InterfaceMotoService{
 	@Override
 	public void create(MotoDTOReq request) throws Exception {
 		
-		Moto result = models.createMoto(request);
+//		Moto result = models.createMoto(request);
 		
 		try {
-			motoRepo.save(result);
+//			motoRepo.save(result);
 		} catch (Exception e) {
 			System.out.println("Errore durante il salvataggio della moto: " + request.getTarga() + "\nErrore: " + e.getMessage());
 		}
@@ -50,7 +50,7 @@ public class MotoServiceImpl implements InterfaceMotoService{
 	public void update(MotoDTOReq request) throws Exception {
 		Moto moto = motoRepo.findById(request.getIdVeicolo()).orElseThrow(()-> new Exception("Moto non trovata"));
 		
-		moto = models.createMoto(request);
+//		moto = models.createMoto(request);
 		
 		motoRepo.save(moto);
 		

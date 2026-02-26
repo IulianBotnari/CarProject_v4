@@ -1,9 +1,9 @@
 package com.betacom.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,36 +11,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.betacom.dto.input.SospensioneDTOReq;
-import com.betacom.services.interfaces.InterfaceSospensioneService;
+import com.betacom.dto.input.MacchinaDTOReq;
+import com.betacom.services.interfaces.InterfaceMacchinaService;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.AllArgsConstructor;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RestController
-@RequestMapping(path = "rest/sospensione/")
-public class SospensioneController {
-	private final InterfaceSospensioneService sospensioneService;
+@RequestMapping(path = "rest/macchina/")
+public class MacchinaController {
+	private final InterfaceMacchinaService macchinaS;
+	
 	
 	@PostMapping(path = "create")
-	public ResponseEntity<Object> create(@RequestBody(required = true) SospensioneDTOReq request){
-		Object response = null;
+	public ResponseEntity<Object> create(@RequestBody MacchinaDTOReq request) {
 		
+		Object response = null;
 		HttpStatus status = HttpStatus.CREATED;
 		
 		try {
-			sospensioneService.create(request);
-			response = "Salvataggio completato";
+			macchinaS.create(request);
+			response = "Macchina salvata con succeso";
 		} catch (Exception e) {
-			response = "Salvataggio non riuscito";
+			e.printStackTrace();
 			status = HttpStatus.BAD_REQUEST;
+			response = "Errore durnate il salvataggio della macchina";
 		}
 		
 		return ResponseEntity.status(status).body(response);
+		
 	}
 	
 	@GetMapping(path = "listAll")	
@@ -49,25 +48,27 @@ public class SospensioneController {
 		HttpStatus status = HttpStatus.OK;
 		Object response = null;
 		try {
-		 response = sospensioneService.list();
+		 response = macchinaS.list();
 		} catch (Exception e) {
 			response = "Errore durante il recupero della lista";
 			status = HttpStatus.BAD_REQUEST;
 		}
 		
 		return ResponseEntity.status(status).body(response);
+		
+		
 	}
 	
 	
 	@PutMapping(path = "update")
-	public ResponseEntity<Object> update(@RequestBody(required = true) SospensioneDTOReq request){
+	public ResponseEntity<Object> update(@RequestBody(required = true) MacchinaDTOReq request){
 		Object response = null;
 		
 		HttpStatus status = HttpStatus.CREATED;
 		
 		try {
 			System.out.println(request.toString());
-			sospensioneService.update(request);
+			macchinaS.update(request);
 			response = "Salvataggio completato";
 		} catch (Exception e) {
 			response = "Salvataggio non riuscito";
@@ -85,7 +86,8 @@ public class SospensioneController {
 		HttpStatus status = HttpStatus.CREATED;
 		
 		try {
-			sospensioneService.delete(id);
+
+			macchinaS.delete(id);
 			response = "Eliminazione completata";
 		} catch (Exception e) {
 			response = "Eliminazione non riuscita";
@@ -95,5 +97,6 @@ public class SospensioneController {
 		return ResponseEntity.status(status).body(response);
 	}
 	
+
 	
 }

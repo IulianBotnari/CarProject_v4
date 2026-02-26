@@ -12,5 +12,5 @@ public interface InterfaceFrenoService {
 	
 	void update(FrenoDTOReq request) throws Exception;
 	
-	void delete(FrenoDTOReq request) throws Exception;
+	void delete(Integer id) throws Exception;
 }

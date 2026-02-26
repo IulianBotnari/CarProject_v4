@@ -12,5 +12,5 @@ public interface InterfaceMacchinaService {
 	
 	void update(MacchinaDTOReq request) throws Exception;
 	
-	void delete(MacchinaDTOReq request) throws Exception;
+	void delete(Integer id) throws Exception;
 }

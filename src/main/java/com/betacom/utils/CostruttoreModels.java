@@ -2,22 +2,15 @@ package com.betacom.utils;
 
 import org.springframework.stereotype.Component;
 
-import com.betacom.dto.input.BiciclettaDTOReq;
-import com.betacom.dto.input.MacchinaDTOReq;
-import com.betacom.dto.input.MotoDTOReq;
 import com.betacom.dto.input.VeicoloDTOReq;
 import com.betacom.models.Alimentazione;
-import com.betacom.models.Bicicletta;
 import com.betacom.models.Categoria;
 import com.betacom.models.Colore;
-import com.betacom.models.Macchina;
-import com.betacom.models.Moto;
 import com.betacom.models.Veicolo;
 import com.betacom.repository.AlimentazioneRepository;
 import com.betacom.repository.CategoriaRepository;
 import com.betacom.repository.ColoreRepository;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Component
@@ -27,40 +20,45 @@ public class CostruttoreModels {
 	private final AlimentazioneRepository alimR;
 	private final ColoreRepository coloR;
 	
-	public Bicicletta createBici(BiciclettaDTOReq req) throws Exception {
-		Bicicletta bici = (Bicicletta) createVeicolo(req);
-		bici.setNumeroMarce(req.getNumeroMarce());
-		return bici;
+	public void updateVeicolo(Veicolo dbVeicolo, VeicoloDTOReq v) throws Exception {
+
+	    if (v.getAnnoProduzione() != null)
+	        dbVeicolo.setAnnoProduzione(v.getAnnoProduzione());
+
+	    if (v.getMarca() != null)
+	        dbVeicolo.setMarca(v.getMarca());
+
+	    if (v.getModello() != null)
+	        dbVeicolo.setModello(v.getModello());
+
+	    if (v.getNumeroRuote() != null)
+	        dbVeicolo.setNumeroRuote(v.getNumeroRuote());
+
+	    if (v.getTipoVeicolo() != null)
+	        dbVeicolo.setTipoVeicolo(v.getTipoVeicolo());
+
+	    if (v.getIdAlimentazione() != null)
+	        dbVeicolo.setAlimentazione(createAlimentazione(v.getIdAlimentazione()));
+
+	    if (v.getIdCategoria() != null)
+	        dbVeicolo.setCategoria(createCategoria(v.getIdCategoria()));
+
+	    if (v.getIdColore() != null)
+	        dbVeicolo.setColore(createColore(v.getIdColore()));
 	}
-	
-	public Macchina createMacchina(MacchinaDTOReq req) throws Exception {
-		Macchina mac = (Macchina) createVeicolo(req);
-		mac.setPorte(req.getPorte());
-		mac.setTarga(req.getTarga());
-		mac.setCilindrata(req.getCilindrata());
-		return mac;
+
+	public void populateVeicolo(Veicolo v, VeicoloDTOReq request) throws Exception {
+	    v.setIdVeicolo(request.getIdVeicolo());
+	    v.setAnnoProduzione(request.getAnnoProduzione());
+	    v.setAlimentazione(createAlimentazione(request.getIdAlimentazione()));
+	    v.setCategoria(createCategoria(request.getIdCategoria()));
+	    v.setColore(createColore(request.getIdColore()));
+	    v.setMarca(request.getMarca());
+	    v.setNumeroRuote(request.getNumeroRuote());
+	    v.setModello(request.getModello());
+	    v.setTipoVeicolo(request.getTipoVeicolo());
 	}
-	
-	public Moto createMoto(MotoDTOReq req) throws Exception {
-		Moto moto = (Moto) createVeicolo(req);
-		moto.setTarga(req.getTarga());
-		moto.setCilindrata(req.getCilindrata());
-		return moto;
-	}
-	
-	private Veicolo createVeicolo(VeicoloDTOReq request) throws Exception {
-		return Veicolo.builder()
-				.idVeicolo(request.getIdVeicolo())
-				.annoProduzione(request.getAnnoProduzione())
-				.alimentazione(createAlimentazione(request.getIdAlimentazione()))
-				.categoria(createCategoria(request.getIdCategoria()))
-				.colore(createColore(request.getIdColore()))
-				.marca(request.getMarca())
-				.numeroRuote(request.getNumeroRuote())
-				.modello(request.getModello())
-				.tipoVeicolo(request.getTipoVeicolo())
-				.build();
-	}
+
 	
 	private Categoria createCategoria(Integer idCategoria) throws Exception {
 		Categoria cat = cateR.findById(idCategoria).orElseThrow(() -> new Exception("Categoria non trovata"));
