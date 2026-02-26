@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.betacom.dto.input.BiciclettaDTOReq;
 import com.betacom.dto.output.BiciclettaDTORes;
+import com.betacom.enums.VehicleType;
 import com.betacom.models.Bicicletta;
 import com.betacom.models.Veicolo;
 import com.betacom.repository.BiciclettaRepository;
 import com.betacom.services.interfaces.InterfaceBiciclettaService;
+import com.betacom.utils.CostruttoreDTORes;
 import com.betacom.utils.CostruttoreModels;
 
 import lombok.AllArgsConstructor;
@@ -38,7 +40,7 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 	public void create(BiciclettaDTOReq request) throws Exception {
 		System.out.println("Bicicletta creata in create bicicletta impl" );
 		Bicicletta result = new Bicicletta();
-		models.populateVeicolo(result, request);
+		models.populateVeicolo(result, request, VehicleType.BICICLETTA);
 		result.setNumeroMarce(request.getNumeroMarce());
 		result.setFreno(models.createFreno(request.getFreno()));
 		result.setSospensione(models.createSospensione(request.getSospensione()));
@@ -71,6 +73,15 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 	public void delete(Integer id) throws Exception {
 		Bicicletta bici = biciclettaRepo.findById(id).orElseThrow(()-> new Exception("Bicicletta non trovata"));
 		biciclettaRepo.delete(bici);
+	}
+
+	@Override
+	public List<BiciclettaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
+		
+		List<Bicicletta> lB = biciclettaRepo.searchByTipoVeicolo(tipoVeicolo);
+		
+			return lB.stream().map(bici -> CostruttoreDTORes.createBiciclettaDTORes(bici)).collect(Collectors.toList());
+
 	}
 
 }

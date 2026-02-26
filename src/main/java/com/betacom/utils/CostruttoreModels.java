@@ -3,6 +3,7 @@ package com.betacom.utils;
 import org.springframework.stereotype.Component;
 
 import com.betacom.dto.input.VeicoloDTOReq;
+import com.betacom.enums.VehicleType;
 import com.betacom.models.Alimentazione;
 
 import com.betacom.models.Categoria;
@@ -43,8 +44,8 @@ public class CostruttoreModels {
 	    if (v.getNumeroRuote() != null)
 	        dbVeicolo.setNumeroRuote(v.getNumeroRuote());
 
-	    if (v.getTipoVeicolo() != null)
-	        dbVeicolo.setTipoVeicolo(v.getTipoVeicolo());
+//	    if (v.getTipoVeicolo() != null)
+//	        dbVeicolo.setTipoVeicolo(v.getTipoVeicolo());
 
 	    if (v.getAlimentazione() != null)
 	        dbVeicolo.setAlimentazione(createAlimentazione(v.getAlimentazione()));
@@ -59,7 +60,7 @@ public class CostruttoreModels {
 	
 
 
-	public void populateVeicolo(Veicolo v, VeicoloDTOReq request) throws Exception {
+	public void populateVeicolo(Veicolo v, VeicoloDTOReq request, VehicleType tipoVeicolo) throws Exception {
 	    v.setIdVeicolo(request.getIdVeicolo());
 	    v.setAnnoProduzione(request.getAnnoProduzione());
 	    v.setAlimentazione(createAlimentazione(request.getAlimentazione()));
@@ -68,7 +69,7 @@ public class CostruttoreModels {
 	    v.setMarca(request.getMarca());
 	    v.setNumeroRuote(request.getNumeroRuote());
 	    v.setModello(request.getModello());
-	    v.setTipoVeicolo(request.getTipoVeicolo());
+	    v.setTipoVeicolo(tipoVeicolo);
 	}
 	
 

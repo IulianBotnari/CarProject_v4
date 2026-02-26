@@ -1,8 +1,12 @@
 package com.betacom.models;
 
 
+import com.betacom.enums.VehicleType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -34,7 +38,8 @@ public class Veicolo {
 	private Integer idVeicolo;
 	
 	@Column(name = "tipo_veicolo", length = 50, nullable = false)
-	private String tipoVeicolo;
+	@Enumerated(EnumType.STRING)
+	private VehicleType tipoVeicolo;
 	
 	@Column(name = "numero_ruote", nullable = false)
 	private Integer numeroRuote;

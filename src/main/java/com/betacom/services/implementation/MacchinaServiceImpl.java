@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.betacom.dto.input.MacchinaDTOReq;
 import com.betacom.dto.output.MacchinaDTORes;
+import com.betacom.enums.VehicleType;
 import com.betacom.models.Macchina;
 import com.betacom.repository.MacchinaRepository;
 import com.betacom.services.interfaces.InterfaceMacchinaService;
@@ -59,7 +60,7 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 		log.debug("create {}", request);
 		
 		Macchina mac = new Macchina();
-		models.populateVeicolo(mac, request);
+		models.populateVeicolo(mac, request, VehicleType.MACCHINA);
 		mac.setPorte(request.getPorte());
 		mac.setTarga(request.getTarga());
 		mac.setCilindrata(request.getCilindrata());
@@ -90,6 +91,36 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 		Macchina mac = macchinaRepo.findById(id).orElseThrow(() -> new Exception("Macchina non trovata"));
 	
 		macchinaRepo.delete(mac);
+	}
+
+
+	@Override
+	public List<MacchinaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
+		
+		List<Macchina> lM = macchinaRepo.searchByTipoVeicolo(tipoVeicolo);
+		
+		  return lM.stream()
+		            .map(v -> MacchinaDTORes.builder()
+		                    .tipoVeicolo(v.getTipoVeicolo())
+		                    .numeroRuote(v.getNumeroRuote())
+		                    .marca(v.getMarca())
+		                    .modello(v.getModello())
+		                    .idVeicolo(v.getIdVeicolo())
+		            		.annoProduzione(v.getAnnoProduzione())
+		                    .targa(v.getTarga())
+		                    .porte(v.getPorte())
+		                    .cilindrata(v.getCilindrata())
+		                    .alimentazione(v.getAlimentazione() != null 
+	                        ? v.getAlimentazione() 
+	                        : null)
+		                    .categoria(v.getCategoria() != null 
+	                        ? v.getCategoria() 
+	                        : null)
+		                    .colore(v.getColore() != null 
+	                        ? v.getColore() 
+	                        : null)
+		                    .build())
+		            .collect(Collectors.toList());
 	}
 
 }

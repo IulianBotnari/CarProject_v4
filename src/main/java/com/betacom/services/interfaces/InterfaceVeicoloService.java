@@ -15,6 +15,4 @@ public interface InterfaceVeicoloService {
 	
 	void delete(VeicoloDTOReq request) throws Exception;
 	
-	
-
 }

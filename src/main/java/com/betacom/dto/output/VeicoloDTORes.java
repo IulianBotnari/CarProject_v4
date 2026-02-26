@@ -2,6 +2,7 @@ package com.betacom.dto.output;
 
 
 
+import com.betacom.enums.VehicleType;
 import com.betacom.models.Alimentazione;
 import com.betacom.models.Categoria;
 import com.betacom.models.Colore;
@@ -18,8 +19,8 @@ import lombok.experimental.SuperBuilder;
 public class VeicoloDTORes {
 	private Integer idVeicolo;
 	
-	private String tipoVeicolo;
-
+	private VehicleType tipoVeicolo;
+	
 	private Integer numeroRuote;
 	
 	private Alimentazione alimentazione;
