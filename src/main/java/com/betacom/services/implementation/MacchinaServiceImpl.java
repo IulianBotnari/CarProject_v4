@@ -34,8 +34,6 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 	                    .numeroRuote(v.getNumeroRuote())
 	                    .marca(v.getMarca())
 	                    .modello(v.getModello())
-	                    // prendo id veicolo al momento anche per id macchina ma è sbagliato!!!
-	                    .idMacchina(v.getIdVeicolo())
 	                    .idVeicolo(v.getIdVeicolo())
 	            		.annoProduzione(v.getAnnoProduzione())
 	                    .targa(v.getTarga())
@@ -73,7 +71,7 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 	public void update(MacchinaDTOReq request) throws Exception {
 		log.debug("update {}", request);
 		
-		Macchina mac = macchinaRepo.findById(request.getIdMacchina()).orElseThrow(() -> new Exception("Macchina non trovata"));
+		Macchina mac = macchinaRepo.findById(request.getIdVeicolo()).orElseThrow(() -> new Exception("Macchina non trovata"));
 		models.updateVeicolo(mac, request);
 		
 		if(request.getPorte() != null)

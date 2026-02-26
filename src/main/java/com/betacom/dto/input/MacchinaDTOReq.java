@@ -10,7 +10,6 @@ import lombok.ToString;
 
 public class MacchinaDTOReq extends VeicoloDTOReq {
 
-	private Integer idMacchina;
 
 	private Integer porte;
 

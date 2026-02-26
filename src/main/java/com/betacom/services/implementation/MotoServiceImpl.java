@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.betacom.dto.input.MotoDTOReq;
 import com.betacom.dto.output.MotoDTORes;
+
 import com.betacom.models.Moto;
 import com.betacom.repository.MotoRepository;
 import com.betacom.services.interfaces.InterfaceMotoService;
@@ -36,12 +37,15 @@ public class MotoServiceImpl implements InterfaceMotoService{
 	@Override
 	public void create(MotoDTOReq request) throws Exception {
 		System.out.println("Moto creata in create moto impl" );
-		Moto result = models.createMoto(request);
+		Moto result = new Moto();
+		models.populateVeicolo(result, request);
+		result.setTarga(request.getTarga());
+		result.setCilindrata(request.getCilindrata());
 		
 		System.out.println("Moto creata in create moto impl" + result.toString());
 		
 		try {
-//			motoRepo.save(result);
+			motoRepo.save(result);
 		} catch (Exception e) {
 			System.out.println("Errore durante il salvataggio della moto: " + request.toString() + "\nErrore: " + e.getMessage());
 		}
@@ -52,7 +56,15 @@ public class MotoServiceImpl implements InterfaceMotoService{
 
 	@Override
 	public void update(MotoDTOReq request) throws Exception {
-		models.validaMotoUpdate(request);		
+		Moto mac = motoRepo.findById(request.getIdVeicolo()).orElseThrow(() -> new Exception("Moto non trovata"));
+		models.updateVeicolo(mac, request);
+		
+		if(request.getTarga() != null)
+			mac.setTarga(request.getTarga());
+		if(request.getCilindrata() != null)
+			mac.setCilindrata(request.getCilindrata());
+		
+		motoRepo.save(mac);		
 	}
 
 	@Override

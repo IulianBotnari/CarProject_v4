@@ -47,7 +47,7 @@ public class MotoController {
 		
 	}
 	
-	@GetMapping(path = "list_all")	
+	@GetMapping(path = "listAll")	
 	public ResponseEntity<Object> listAll(){
 		
 		HttpStatus status = HttpStatus.OK;

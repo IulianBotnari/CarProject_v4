@@ -10,7 +10,6 @@ import lombok.experimental.SuperBuilder;
 @ToString
 public class MacchinaDTORes extends VeicoloDTORes {
 
-	private Integer idMacchina;
 
 	private Integer porte;
 
