@@ -1,5 +1,8 @@
 package com.betacom.dto.input;
 
+import com.betacom.models.Freno;
+import com.betacom.models.Sospensione;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,16 +10,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BiciclettaDTOReq extends VeicoloDTOReq {
-
-	private Integer idBiciletta;
-
-	private Integer idVeicolo;
+public class BiciclettaDTOReq extends VeicoloDTOReq{
 
 	private Integer numeroMarce;
 
-	private Integer idFreno;
+	private Integer freno;
 
-	private Integer idSospensione;
+	private Integer sospensione;
 	
 }

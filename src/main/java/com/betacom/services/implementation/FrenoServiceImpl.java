@@ -47,6 +47,8 @@ public class FrenoServiceImpl implements InterfaceFrenoService{
 		} catch (Exception e) {
 			throw new Exception("Freno non valido " + e.getMessage());
 		}
+		
+		frenoRepo.save(freno);
 	}
 
 	@Override

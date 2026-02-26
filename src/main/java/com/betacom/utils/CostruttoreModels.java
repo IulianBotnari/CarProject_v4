@@ -7,11 +7,15 @@ import com.betacom.models.Alimentazione;
 
 import com.betacom.models.Categoria;
 import com.betacom.models.Colore;
+import com.betacom.models.Freno;
+import com.betacom.models.Sospensione;
 import com.betacom.models.Veicolo;
 import com.betacom.repository.AlimentazioneRepository;
 import com.betacom.repository.CategoriaRepository;
 import com.betacom.repository.ColoreRepository;
+import com.betacom.repository.FrenoRepository;
 import com.betacom.repository.MotoRepository;
+import com.betacom.repository.SospensioneRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +26,8 @@ public class CostruttoreModels {
 	private final AlimentazioneRepository alimR;
 	private final ColoreRepository coloR;
 	private final MotoRepository motoRepo;
+	private final SospensioneRepository sospRepo;
+	private final FrenoRepository frenoRepo;
 	
 	public void updateVeicolo(Veicolo dbVeicolo, VeicoloDTOReq v) throws Exception {
 
@@ -79,11 +85,21 @@ public class CostruttoreModels {
 		return Alimentazione.builder().idAlimentazione(idAlimentazione).alimentazione(alim.getAlimentazione()).build();
 	}
 	
+	public Sospensione createSospensione(Integer idSospensione) throws Exception {
+		Sospensione sosp = sospRepo.findById(idSospensione).orElseThrow(() -> new Exception("Sospensione non trovata"));
+		
+		return Sospensione.builder().idSospensione(idSospensione).sospensione(sosp.getSospensione()).build();
+	}
+
+	public Freno createFreno(Integer idFreno) throws Exception {
+		Freno freno = frenoRepo.findById(idFreno).orElseThrow(() -> new Exception("Freno non trovato"));
+		
+		return Freno.builder().idFreno(idFreno).freno(freno.getFreno()).build();
+	}
+	
 	private Colore createColore(Integer idColore) throws Exception {
 		Colore colore = coloR.findById(idColore).orElseThrow(() -> new Exception("Colore non trovato"));
 		
 		return Colore.builder().idColore(idColore).colore(colore.getColore()).build();
 	}
-
-
 }

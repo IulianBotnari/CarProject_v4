@@ -12,5 +12,5 @@ public interface InterfaceBiciclettaService {
 	
 	void update(BiciclettaDTOReq request) throws Exception;
 	
-	void delete(BiciclettaDTOReq request) throws Exception;
+	void delete(Integer id) throws Exception;
 }
