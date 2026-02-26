@@ -25,7 +25,7 @@ public class BiciclettaController {
 	private final InterfaceBiciclettaService biciService;
 	
 	@PostMapping(path = "create")
-	public ResponseEntity<Object> create(@RequestParam(required = true) BiciclettaDTOReq request){
+	public ResponseEntity<Object> create(@RequestBody(required = true) BiciclettaDTOReq request){
 		System.out.println("entra nel metodo");
 		Object response = null;
 		
