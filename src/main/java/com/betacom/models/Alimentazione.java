@@ -12,8 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "alimentzioni")

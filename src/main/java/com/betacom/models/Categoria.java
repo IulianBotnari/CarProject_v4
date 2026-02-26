@@ -18,8 +18,6 @@ import lombok.Setter;
 @Table(name = "categorie")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Categoria {
 	
 	@Id

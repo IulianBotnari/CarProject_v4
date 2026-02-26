@@ -2,10 +2,16 @@ package com.betacom.utils;
 
 import org.springframework.stereotype.Component;
 
+import com.betacom.dto.input.BiciclettaDTOReq;
+import com.betacom.dto.input.MacchinaDTOReq;
+import com.betacom.dto.input.MotoDTOReq;
 import com.betacom.dto.input.VeicoloDTOReq;
 import com.betacom.models.Alimentazione;
+import com.betacom.models.Bicicletta;
 import com.betacom.models.Categoria;
 import com.betacom.models.Colore;
+import com.betacom.models.Macchina;
+import com.betacom.models.Moto;
 import com.betacom.models.Veicolo;
 import com.betacom.repository.AlimentazioneRepository;
 import com.betacom.repository.CategoriaRepository;
@@ -39,14 +45,18 @@ public class CostruttoreModels {
 	    if (v.getTipoVeicolo() != null)
 	        dbVeicolo.setTipoVeicolo(v.getTipoVeicolo());
 
-	    if (v.getIdAlimentazione() != null)
-	        dbVeicolo.setAlimentazione(createAlimentazione(v.getIdAlimentazione()));
+	    if (v.getAlimentazione() != null)
+	        dbVeicolo.setAlimentazione(createAlimentazione(v.getAlimentazione()));
 
-	    if (v.getIdCategoria() != null)
-	        dbVeicolo.setCategoria(createCategoria(v.getIdCategoria()));
+	    if (v.getCategoria() != null)
+	        dbVeicolo.setCategoria(createCategoria(v.getCategoria()));
 
-	    if (v.getIdColore() != null)
-	        dbVeicolo.setColore(createColore(v.getIdColore()));
+	    if (v.getColore() != null)
+	        dbVeicolo.setColore(createColore(v.getColore()));
+	    
+	}
+	
+	
 	public Bicicletta createBici(BiciclettaDTOReq req) throws Exception {
 		Bicicletta bici = (Bicicletta) createVeicolo(req);
 		bici.setNumeroMarce(req.getNumeroMarce());
@@ -87,13 +97,14 @@ public class CostruttoreModels {
 	public void populateVeicolo(Veicolo v, VeicoloDTOReq request) throws Exception {
 	    v.setIdVeicolo(request.getIdVeicolo());
 	    v.setAnnoProduzione(request.getAnnoProduzione());
-	    v.setAlimentazione(createAlimentazione(request.getIdAlimentazione()));
-	    v.setCategoria(createCategoria(request.getIdCategoria()));
-	    v.setColore(createColore(request.getIdColore()));
+	    v.setAlimentazione(createAlimentazione(request.getAlimentazione()));
+	    v.setCategoria(createCategoria(request.getCategoria()));
+	    v.setColore(createColore(request.getColore()));
 	    v.setMarca(request.getMarca());
 	    v.setNumeroRuote(request.getNumeroRuote());
 	    v.setModello(request.getModello());
 	    v.setTipoVeicolo(request.getTipoVeicolo());
+	}
 	
 	private Veicolo createVeicolo(VeicoloDTOReq request) throws Exception {
 		return Veicolo.builder()

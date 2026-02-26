@@ -18,8 +18,6 @@ import lombok.Setter;
 @Table(name = "colori")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Colore {
 	
 	@Id
