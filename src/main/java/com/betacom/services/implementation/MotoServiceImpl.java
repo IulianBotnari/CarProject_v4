@@ -12,6 +12,7 @@ import com.betacom.repository.MotoRepository;
 import com.betacom.services.interfaces.InterfaceMotoService;
 import com.betacom.utils.CostruttoreDTORes;
 import com.betacom.utils.CostruttoreModels;
+import com.betacom.utils.Validazioni;
 
 import lombok.AllArgsConstructor;
 
@@ -21,6 +22,7 @@ public class MotoServiceImpl implements InterfaceMotoService{
 	
 	private final MotoRepository motoRepo;
 	private final CostruttoreModels models;
+	private final Validazioni validazioni;
 	
 	
 	@Override
@@ -50,12 +52,7 @@ public class MotoServiceImpl implements InterfaceMotoService{
 
 	@Override
 	public void update(MotoDTOReq request) throws Exception {
-		Moto moto = motoRepo.findById(request.getIdVeicolo()).orElseThrow(()-> new Exception("Moto non trovata"));
-		
-		moto = models.createMoto(request);
-		
-		motoRepo.save(moto);
-		
+		models.validaMotoUpdate(request);		
 	}
 
 	@Override

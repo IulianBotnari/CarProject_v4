@@ -16,6 +16,7 @@ import com.betacom.models.Veicolo;
 import com.betacom.repository.AlimentazioneRepository;
 import com.betacom.repository.CategoriaRepository;
 import com.betacom.repository.ColoreRepository;
+import com.betacom.repository.MotoRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +26,7 @@ public class CostruttoreModels {
 	private final CategoriaRepository cateR;
 	private final AlimentazioneRepository alimR;
 	private final ColoreRepository coloR;
+	private final MotoRepository motoRepo;
 	
 	public Bicicletta createBici(BiciclettaDTOReq req) throws Exception {
 		Bicicletta bici = (Bicicletta) createVeicolo(req);
@@ -49,9 +51,9 @@ public class CostruttoreModels {
 			return Moto.builder()
 					.idVeicolo(null)
 					.annoProduzione(req.getAnnoProduzione())
-					.alimentazione(createAlimentazione(req.getIdAlimentazione()))
-					.categoria(createCategoria(req.getIdCategoria()))
-					.colore(createColore(req.getIdColore()))
+					.alimentazione(createAlimentazione(req.getAlimentazione()))
+					.categoria(createCategoria(req.getCategoria()))
+					.colore(createColore(req.getColore()))
 					.marca(req.getMarca())
 					.numeroRuote(req.getNumeroRuote())
 					.modello(req.getModello())
@@ -67,9 +69,9 @@ public class CostruttoreModels {
 		return Veicolo.builder()
 				.idVeicolo(request.getIdVeicolo())
 				.annoProduzione(request.getAnnoProduzione())
-				.alimentazione(createAlimentazione(request.getIdAlimentazione()))
-				.categoria(createCategoria(request.getIdCategoria()))
-				.colore(createColore(request.getIdColore()))
+				.alimentazione(createAlimentazione(request.getAlimentazione()))
+				.categoria(createCategoria(request.getCategoria()))
+				.colore(createColore(request.getColore()))
 				.marca(request.getMarca())
 				.numeroRuote(request.getNumeroRuote())
 				.modello(request.getModello())
@@ -93,6 +95,60 @@ public class CostruttoreModels {
 		Colore colore = coloR.findById(idColore).orElseThrow(() -> new Exception("Colore non trovato"));
 		
 		return Colore.builder().idColore(idColore).colore(colore.getColore()).build();
+	}
+	
+public Moto validaMotoUpdate(MotoDTOReq request) throws Exception {
+	    
+
+	    Moto moto = motoRepo.findById(request.getIdVeicolo())
+	                        .orElseThrow(() -> new Exception("Nessuna moto trovata"));
+
+	    
+	    if (request.getTipoVeicolo() != null) {
+	        moto.setTipoVeicolo(request.getTipoVeicolo());
+	    }
+	    
+	    if (request.getNumeroRuote() != null) {
+	        moto.setNumeroRuote(request.getNumeroRuote());
+	    }
+	    
+	    if (request.getAlimentazione() != null) {
+	    	Alimentazione alimentazione = createAlimentazione(request.getAlimentazione());
+	        moto.setAlimentazione(alimentazione);
+	    }
+	    
+	    if (request.getCategoria() != null) {
+	    	Categoria categoria = createCategoria(request.getCategoria());
+	        moto.setCategoria(categoria);
+	    }
+	    
+	    if (request.getColore() != null) {
+	    	Colore colore = createColore(request.getColore());
+	    	
+	        moto.setColore(colore);
+	    }
+	    
+	    if (request.getMarca() != null) {
+	        moto.setMarca(request.getMarca());
+	    }
+	    
+	    if (request.getAnnoProduzione() != null) {
+	        moto.setAnnoProduzione(request.getAnnoProduzione());
+	    }
+	    
+	    if (request.getModello() != null) {
+	        moto.setModello(request.getModello());
+	    }
+
+	    if (request.getTarga() != null && request.getTarga().length() == 5) {
+	        moto.setTarga(request.getTarga());
+	    }
+
+	    if (request.getCilindrata() != null) {
+	        moto.setCilindrata(request.getCilindrata());
+	    }
+
+	    return motoRepo.save(moto);
 	}
 
 }

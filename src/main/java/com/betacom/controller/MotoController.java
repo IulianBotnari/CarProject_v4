@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.betacom.dto.input.MotoDTOReq;
 import com.betacom.dto.input.SospensioneDTOReq;
+import com.betacom.dto.input.VeicoloDTOReq;
 import com.betacom.services.interfaces.InterfaceMotoService;
 
 
@@ -68,6 +69,8 @@ public class MotoController {
 	public ResponseEntity<Object> update(@RequestBody(required = true) MotoDTOReq request){
 		Object response = null;
 		
+	//	System.out.println("Mto contr" +(VeicoloDTOReq) request);
+		
 		HttpStatus status = HttpStatus.CREATED;
 		
 		try {
@@ -77,6 +80,7 @@ public class MotoController {
 		} catch (Exception e) {
 			response = "Salvataggio non riuscito";
 			status = HttpStatus.BAD_REQUEST;
+			e.printStackTrace();
 		}
 		
 		
