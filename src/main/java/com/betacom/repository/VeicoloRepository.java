@@ -14,7 +14,7 @@ import com.betacom.models.Veicolo;
 public interface VeicoloRepository extends JpaRepository<Veicolo, Integer>{
 	
 	@Query(name = "select.multiFilter")
-	public List<Veicolo> multiFilter(@Param("idVeicolo") Integer idVeicolo,
+	public List<? extends Veicolo> multiFilter(@Param("idVeicolo") Integer idVeicolo,
 			@Param("marca") String marca,
 			@Param("modello") String modello,
 			@Param("tipoVeicolo") VehicleType tipoVeicolo,

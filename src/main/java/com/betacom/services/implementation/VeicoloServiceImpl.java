@@ -6,9 +6,14 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.betacom.dto.input.VeicoloDTOReq;
+import com.betacom.dto.output.BiciclettaDTORes;
 import com.betacom.dto.output.MacchinaDTORes;
+import com.betacom.dto.output.MotoDTORes;
 import com.betacom.dto.output.VeicoloDTORes;
 import com.betacom.enums.VehicleType;
+import com.betacom.models.Bicicletta;
+import com.betacom.models.Macchina;
+import com.betacom.models.Moto;
 import com.betacom.models.Veicolo;
 import com.betacom.repository.VeicoloRepository;
 import com.betacom.services.interfaces.InterfaceVeicoloService;
@@ -49,7 +54,7 @@ public class VeicoloServiceImpl implements InterfaceVeicoloService{
 	}
 
 	@Override
-	public List<VeicoloDTORes> multiFilter(Integer idVeicolo,                
+	public List<? extends VeicoloDTORes> multiFilter(Integer idVeicolo,                
 	        String marca,
 	        String modello,
 	        VehicleType tipoVeicolo,
@@ -60,9 +65,9 @@ public class VeicoloServiceImpl implements InterfaceVeicoloService{
 	        Integer numeroRuote,
 	        String targa) throws Exception {
 	    
-	    List<Veicolo> veicoliFiltrati = veicoloRepo.multiFilter(idVeicolo, marca, modello, tipoVeicolo, idAlimentazione, idCategoria, annoProduzione, idColore, numeroRuote,targa);
-	    
-	    // Rimosso il cast errato (VeicoloDTORes)
+	    List<? extends Veicolo> veicoliFiltrati = veicoloRepo.multiFilter(idVeicolo, marca, modello, tipoVeicolo, idAlimentazione, idCategoria, annoProduzione, idColore, numeroRuote,targa);
+	    /*
+
 	    return veicoliFiltrati.stream().map(veic -> VeicoloDTORes.builder()
 	            .idVeicolo(veic.getIdVeicolo())
 	            .marca(veic.getMarca())
@@ -73,8 +78,58 @@ public class VeicoloServiceImpl implements InterfaceVeicoloService{
 	            .numeroRuote(veic.getNumeroRuote())
 	            .colore(veic.getColore())
 	            .annoProduzione(veic.getAnnoProduzione())
-	           
+	            
 	            .build()).collect(Collectors.toList());
 	}
+	*/
+	    	return veicoliFiltrati.stream().map(veic -> {
+	    		if (veic instanceof Macchina mac) {
+	    			return MacchinaDTORes.builder()
+	    					.idVeicolo(mac.getIdVeicolo())
+	    		            .marca(mac.getMarca())
+	    		            .modello(mac.getModello())
+	    		            .tipoVeicolo(mac.getTipoVeicolo())
+	    		            .alimentazione(mac.getAlimentazione())
+	    		            .categoria(mac.getCategoria())
+	    		            .numeroRuote(mac.getNumeroRuote())
+	    		            .colore(mac.getColore())
+	    		            .annoProduzione(mac.getAnnoProduzione())
+	    		            .targa(mac.getTarga())
+	    		            .cilindrata(mac.getCilindrata())
+	    		            .build();
+	    		} else if (veic instanceof Moto moto) {
+	    			return MotoDTORes.builder()
+	    					.idVeicolo(moto.getIdVeicolo())
+	    		            .marca(moto.getMarca())
+	    		            .modello(moto.getModello())
+	    		            .tipoVeicolo(moto.getTipoVeicolo())
+	    		            .alimentazione(moto.getAlimentazione())
+	    		            .categoria(moto.getCategoria())
+	    		            .numeroRuote(moto.getNumeroRuote())
+	    		            .colore(moto.getColore())
+	    		            .annoProduzione(moto.getAnnoProduzione())
+	    		            .targa(moto.getTarga())
+	    		            .cilindrata(moto.getCilindrata())
+	    		            .build();
+	    		} else if (veic instanceof Bicicletta bici){
+	    			return BiciclettaDTORes.builder()
+	    					.idVeicolo(bici.getIdVeicolo())
+	    		            .marca(bici.getMarca())
+	    		            .modello(bici.getModello())
+	    		            .tipoVeicolo(bici.getTipoVeicolo())
+	    		            .alimentazione(bici.getAlimentazione())
+	    		            .categoria(bici.getCategoria())
+	    		            .numeroRuote(bici.getNumeroRuote())
+	    		            .colore(bici.getColore())
+	    		            .annoProduzione(bici.getAnnoProduzione())
+	    		            .freno(bici.getFreno())
+	    		            .numeroMarce(bici.getNumeroMarce())
+	    		            .sospensione(bici.getSospensione())
+	    		            .build();
+	    		}
+				return null;
+	    	}).collect(Collectors.toList());
 
-}
+
+
+}}
