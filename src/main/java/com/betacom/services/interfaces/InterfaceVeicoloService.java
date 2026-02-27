@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.betacom.dto.input.VeicoloDTOReq;
 import com.betacom.dto.output.VeicoloDTORes;
+import com.betacom.enums.VehicleType;
 
 public interface InterfaceVeicoloService {
 	
@@ -18,7 +19,7 @@ public interface InterfaceVeicoloService {
 	List<VeicoloDTORes> multiFilter(Integer idVeicolo,
 			String marca,
 			String modello,
-			String tipoVeicolo,
+			VehicleType tipoVeicolo,
 			Integer idAlimentazione,
 			Integer idCategoria,
 			Integer annoProduzione,

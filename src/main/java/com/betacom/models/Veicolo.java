@@ -38,8 +38,8 @@ public class Veicolo {
 	private Integer idVeicolo;
 	
 	@Column(name = "tipo_veicolo", length = 50, nullable = false)
-	//@Enumerated(EnumType.STRING)
-	private String tipoVeicolo;
+	@Enumerated(EnumType.STRING)
+	private VehicleType tipoVeicolo;
 	
 	@Column(name = "numero_ruote", nullable = false)
 	private Integer numeroRuote;

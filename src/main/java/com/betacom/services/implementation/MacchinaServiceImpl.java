@@ -74,7 +74,7 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 		log.debug("create {}", request);
 		
 		Macchina mac = new Macchina();
-		models.populateVeicolo(mac, request);
+		models.populateVeicolo(mac, request, VehicleType.MACCHINA);
 		mac.setPorte(request.getPorte());
 		mac.setTarga(request.getTarga());
 		mac.setCilindrata(request.getCilindrata());

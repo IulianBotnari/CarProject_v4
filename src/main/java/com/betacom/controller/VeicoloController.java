@@ -58,7 +58,7 @@ public class VeicoloController {
 	
 	@GetMapping(path = "multiFilter/{idVeicolo}/{tipoVeicolo}/{numeroRuote}/{idAlimentazione}/{idCategoria}/{idColore}/{marca}/{annoProduzione}/{modello}")
 	public ResponseEntity<Object> multiFilterVeicolo(@RequestParam(required = false) Integer idVeicolo,
-			@RequestParam(required = false) String tipoVeicolo,
+			@RequestParam(required = false) VehicleType tipoVeicolo,
 			@RequestParam(required = false) Integer numerRuote,
 			@RequestParam(required = false) Integer idAlimentazione,
 			@RequestParam(required = false) Integer idCategoria,

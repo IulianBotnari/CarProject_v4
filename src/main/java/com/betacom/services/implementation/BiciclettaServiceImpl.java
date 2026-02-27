@@ -63,7 +63,7 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 	public void create(BiciclettaDTOReq request) throws Exception {
 		System.out.println("Bicicletta creata in create bicicletta impl" );
 		Bicicletta result = new Bicicletta();
-		models.populateVeicolo(result, request);
+		models.populateVeicolo(result, request, VehicleType.BICICLETTA);
 		result.setNumeroMarce(request.getNumeroMarce());
 		result.setFreno(models.createFreno(request.getFreno()));
 		result.setSospensione(models.createSospensione(request.getSospensione()));

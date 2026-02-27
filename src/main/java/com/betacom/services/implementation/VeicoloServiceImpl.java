@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.betacom.dto.input.VeicoloDTOReq;
 import com.betacom.dto.output.MacchinaDTORes;
 import com.betacom.dto.output.VeicoloDTORes;
+import com.betacom.enums.VehicleType;
 import com.betacom.models.Veicolo;
 import com.betacom.repository.VeicoloRepository;
 import com.betacom.services.interfaces.InterfaceVeicoloService;
@@ -51,7 +52,7 @@ public class VeicoloServiceImpl implements InterfaceVeicoloService{
 	public List<VeicoloDTORes> multiFilter(Integer idVeicolo,                
 	        String marca,
 	        String modello,
-	        String tipoVeicolo,
+	        VehicleType tipoVeicolo,
 	        Integer idAlimentazione,
 	        Integer idCategoria,
 	        Integer annoProduzione,

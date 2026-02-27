@@ -11,7 +11,7 @@ public class VeicoloDTOReq {
 	
 	private Integer idVeicolo;
 	
-	private String tipoVeicolo;
+//	private String tipoVeicolo;
 
 	private Integer numeroRuote;
 	

@@ -57,7 +57,7 @@ public class MotoServiceImpl implements InterfaceMotoService {
 	public void create(MotoDTOReq request) throws Exception {
 		System.out.println("Moto creata in create moto impl");
 		Moto result = new Moto();
-		models.populateVeicolo(result, request);
+		models.populateVeicolo(result, request, VehicleType.MOTO);
 		result.setTarga(request.getTarga());
 		result.setCilindrata(request.getCilindrata());
 

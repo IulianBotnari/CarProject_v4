@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.betacom.enums.VehicleType;
 import com.betacom.models.Veicolo;
 
 @Repository
@@ -16,7 +17,7 @@ public interface VeicoloRepository extends JpaRepository<Veicolo, Integer>{
 	public List<Veicolo> multiFilter(@Param("idVeicolo") Integer idVeicolo,
 			@Param("marca") String marca,
 			@Param("modello") String modello,
-			@Param("tipoVeicolo") String tipoVeicolo,
+			@Param("tipoVeicolo") VehicleType tipoVeicolo,
 			@Param("idAlimentazione") Integer idAlimentazione,
 			@Param("idCategoria") Integer idCategoria,
 			@Param("annoProduzione") Integer annoProduzione,
