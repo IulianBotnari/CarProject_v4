@@ -11,6 +11,7 @@ import com.betacom.enums.VehicleType;
 import com.betacom.models.Macchina;
 import com.betacom.repository.MacchinaRepository;
 import com.betacom.services.interfaces.InterfaceMacchinaService;
+import com.betacom.utils.CostruttoreDTORes;
 import com.betacom.utils.CostruttoreModels;
 
 import lombok.AllArgsConstructor;
@@ -30,44 +31,10 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 	    List<Macchina> lM = macchinaRepo.findAll();
 	    
 	    return lM.stream()
-	            .map(v -> MacchinaDTORes.builder()
-	                    .tipoVeicolo(v.getTipoVeicolo())
-	                    .numeroRuote(v.getNumeroRuote())
-	                    .marca(v.getMarca())
-	                    .modello(v.getModello())
-	                    .idVeicolo(v.getIdVeicolo())
-	            		.annoProduzione(v.getAnnoProduzione())
-	                    .targa(v.getTarga())
-	                    .porte(v.getPorte())
-	                    .cilindrata(v.getCilindrata())
-	                    .alimentazione(v.getAlimentazione() != null 
-                        ? v.getAlimentazione() 
-                        : null)
-	                    .categoria(v.getCategoria() != null 
-                        ? v.getCategoria() 
-                        : null)
-	                    .colore(v.getColore() != null 
-                        ? v.getColore() 
-                        : null)
-	                    .build())
+	            .map(mac -> CostruttoreDTORes.createMacchinaaDTORes(mac))
 	            .collect(Collectors.toList());
 	    
 	}
-
-
-	/*@Override
-	public void create(MacchinaDTOReq request) throws Exception {
-		log.debug("create {}", request);
-		
-		Macchina mac = new Macchina();
-		models.populateVeicolo(mac, request, VehicleType.MACCHINA);
-		mac.setPorte(request.getPorte());
-		mac.setTarga(request.getTarga());
-		mac.setCilindrata(request.getCilindrata());
-		
-		macchinaRepo.save(mac);
-	}*/
-	
 
 	@Override
 	public void create(MacchinaDTOReq request) throws Exception {
@@ -106,42 +73,5 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 	
 		macchinaRepo.delete(mac);
 	}
-
-
-	@Override
-	public List<MacchinaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-/*
-	@Override
-	public List<MacchinaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
-		
-		List<Macchina> lM = macchinaRepo.searchByTipoVeicolo(tipoVeicolo);
-		
-		  return lM.stream()
-		            .map(v -> MacchinaDTORes.builder()
-		                    .tipoVeicolo(v.getTipoVeicolo())
-		                    .numeroRuote(v.getNumeroRuote())
-		                    .marca(v.getMarca())
-		                    .modello(v.getModello())
-		                    .idVeicolo(v.getIdVeicolo())
-		            		.annoProduzione(v.getAnnoProduzione())
-		                    .targa(v.getTarga())
-		                    .porte(v.getPorte())
-		                    .cilindrata(v.getCilindrata())
-		                    .alimentazione(v.getAlimentazione() != null 
-	                        ? v.getAlimentazione() 
-	                        : null)
-		                    .categoria(v.getCategoria() != null 
-	                        ? v.getCategoria() 
-	                        : null)
-		                    .colore(v.getColore() != null 
-	                        ? v.getColore() 
-	                        : null)
-		                    .build())
-		            .collect(Collectors.toList());
-	}*/
 
 }

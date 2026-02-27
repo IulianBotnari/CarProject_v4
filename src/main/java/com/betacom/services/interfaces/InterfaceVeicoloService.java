@@ -8,14 +8,6 @@ import com.betacom.enums.VehicleType;
 
 public interface InterfaceVeicoloService {
 	
-	List<VeicoloDTORes> list() throws Exception;
-	
-	void create(VeicoloDTOReq request) throws Exception;
-	
-	void update(VeicoloDTOReq request) throws Exception;
-	
-	void delete(VeicoloDTOReq request) throws Exception;
-	
 	List<? extends VeicoloDTORes> multiFilter(Integer idVeicolo,
 			String marca,
 			String modello,

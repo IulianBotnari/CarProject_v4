@@ -44,9 +44,6 @@ public class CostruttoreModels {
 	    if (v.getNumeroRuote() != null)
 	        dbVeicolo.setNumeroRuote(v.getNumeroRuote());
 
-//	    if (v.getTipoVeicolo() != null)
-//	        dbVeicolo.setTipoVeicolo(v.getTipoVeicolo());
-
 	    if (v.getAlimentazione() != null)
 	        dbVeicolo.setAlimentazione(createAlimentazione(v.getAlimentazione()));
 
@@ -58,22 +55,8 @@ public class CostruttoreModels {
 	    
 	}
 	
-/*
-
-	public void populateVeicolo(Veicolo v, VeicoloDTOReq request, VehicleType tipoVeicolo) throws Exception {
-	    v.setIdVeicolo(request.getIdVeicolo());
-	    v.setAnnoProduzione(request.getAnnoProduzione());
-	    v.setAlimentazione(createAlimentazione(request.getAlimentazione()));
-	    v.setCategoria(createCategoria(request.getCategoria()));
-	    v.setColore(createColore(request.getColore()));
-	    v.setMarca(request.getMarca());
-	    v.setNumeroRuote(request.getNumeroRuote());
-	    v.setModello(request.getModello());
-	    v.setTipoVeicolo(tipoVeicolo);
-	}*/
 	
 	public void populateVeicolo(Veicolo v, VeicoloDTOReq request, VehicleType tipoVeicolo) throws Exception {
-//	    v.setIdVeicolo(request.getIdVeicolo());
 	    v.setAnnoProduzione(request.getAnnoProduzione());
 	    v.setAlimentazione(createAlimentazione(request.getAlimentazione()));
 	    v.setCategoria(createCategoria(request.getCategoria()));
@@ -83,10 +66,6 @@ public class CostruttoreModels {
 	    v.setModello(request.getModello());
 	    v.setTipoVeicolo(tipoVeicolo);
 	}
-	
-	
-	
-
 	
 	private Categoria createCategoria(Integer idCategoria) throws Exception {
 		Categoria cat = cateR.findById(idCategoria).orElseThrow(() -> new Exception("Categoria non trovata"));

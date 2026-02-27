@@ -34,29 +34,6 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 		
 		return listaBici.stream().map(bici -> CostruttoreDTORes.createBiciclettaDTORes(bici)).collect(Collectors.toList());
 	}
-/*
-	@Override
-	public void create(BiciclettaDTOReq request) throws Exception {
-		System.out.println("Bicicletta creata in create bicicletta impl" );
-		Bicicletta result = new Bicicletta();
-		models.populateVeicolo(result, request, VehicleType.BICICLETTA);
-		result.setNumeroMarce(request.getNumeroMarce());
-		result.setFreno(models.createFreno(request.getFreno()));
-		result.setSospensione(models.createSospensione(request.getSospensione()));
-		
-		System.out.println("Bicicletta creata in create bicicletta impl" + result.toString());
-		
-		try {
-			biciclettaRepo.save(result);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Errore durante il salvataggio della bicicletta: " + request.toString() + "\nErrore: " + e.getMessage());
-		}
-	
-	 
-		
-	}*/
-	
 	
 	@Override
 	public void create(BiciclettaDTOReq request) throws Exception {
@@ -84,8 +61,14 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 	public void update(BiciclettaDTOReq request) throws Exception {
 		Bicicletta bici = biciclettaRepo.findById(request.getIdVeicolo()).orElseThrow(()-> new Exception("Bicicletta non trovata"));
 		
-		//bici = models.createBicicletta(request);
-		
+		models.updateVeicolo(bici, request);
+		if(request.getSospensione() != null)
+			bici.setSospensione(models.createSospensione(request.getSospensione()));
+		if(request.getFreno() != null) 
+			bici.setFreno(models.createFreno(request.getFreno()));
+		if(request.getNumeroMarce() != null)
+			bici.setNumeroMarce(request.getNumeroMarce());
+			
 		biciclettaRepo.save(bici);
 		
 	}
@@ -96,21 +79,5 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 		Bicicletta bici = biciclettaRepo.findById(id).orElseThrow(()-> new Exception("Bicicletta non trovata"));
 		biciclettaRepo.delete(bici);
 	}
-
-
-	@Override
-	public List<BiciclettaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-/*
-	@Override
-	public List<BiciclettaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
-		
-		List<Bicicletta> lB = biciclettaRepo.searchByTipoVeicolo(tipoVeicolo);
-		
-			return lB.stream().map(bici -> CostruttoreDTORes.createBiciclettaDTORes(bici)).collect(Collectors.toList());
-
-	}*/
 
 }

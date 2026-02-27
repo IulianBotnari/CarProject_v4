@@ -66,10 +66,16 @@ public class VeicoloController {
 			@RequestParam(required = false) String marca,
 			@RequestParam(required = false) Integer annoProduzione,
 			@RequestParam(required = false) String modello,
-			@RequestParam(required = false) String targa) {
+			@RequestParam(required = false) String targa) throws Exception {
 		
 		Object response = null;
 		HttpStatus status = HttpStatus.OK;
+		
+		if(tipoVeicolo.equals(VehicleType.BICICLETTA) && targa != null) {
+			response = "le bici non hanno una targa";
+			status = HttpStatus.BAD_REQUEST;
+			throw new Exception("le bici non hanno una targa");
+		}
 		
 		try {
 			response = veicoloS.multiFilter(idVeicolo, marca, modello, tipoVeicolo, idAlimentazione, idCategoria, annoProduzione, idColore, annoProduzione, targa);

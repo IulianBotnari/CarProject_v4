@@ -16,6 +16,4 @@ public interface InterfaceMacchinaService {
 	
 	void delete(Integer id) throws Exception;
 	
-	List<MacchinaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception;
-
 }
