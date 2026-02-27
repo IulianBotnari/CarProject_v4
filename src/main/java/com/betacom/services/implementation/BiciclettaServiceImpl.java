@@ -32,8 +32,7 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 	public List<BiciclettaDTORes> list() throws Exception {
 		List<Bicicletta> listaBici = biciclettaRepo.findAll();
 		
-		return null;
-	//	return listaBici.stream().map(bici -> CostruttoreDTORes.createBiciclettaDTORes(bicicletta)).collect(Collectors.toList());
+		return listaBici.stream().map(bici -> CostruttoreDTORes.createBiciclettaDTORes(bici)).collect(Collectors.toList());
 	}
 /*
 	@Override
