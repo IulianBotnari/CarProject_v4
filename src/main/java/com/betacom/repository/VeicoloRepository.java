@@ -22,5 +22,6 @@ public interface VeicoloRepository extends JpaRepository<Veicolo, Integer>{
 			@Param("idCategoria") Integer idCategoria,
 			@Param("annoProduzione") Integer annoProduzione,
 			@Param("idColore") Integer idColore,
-			@Param("numeroRuote") Integer numeroRuote);
+			@Param("numeroRuote") Integer numeroRuote,
+	        @Param("targa") String targa);
 }

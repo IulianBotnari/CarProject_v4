@@ -24,6 +24,7 @@ public interface InterfaceVeicoloService {
 			Integer idCategoria,
 			Integer annoProduzione,
 			Integer idColore,
-			Integer numeroRuote) throws Exception;
+			Integer numeroRuote,
+			String targa) throws Exception;
 	
 }

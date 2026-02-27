@@ -56,7 +56,7 @@ public class VeicoloController {
 	}*/
 	
 	
-	@GetMapping(path = "multiFilter/{idVeicolo}/{tipoVeicolo}/{numeroRuote}/{idAlimentazione}/{idCategoria}/{idColore}/{marca}/{annoProduzione}/{modello}")
+	@GetMapping(path = "multiFilter/{idVeicolo}/{tipoVeicolo}/{numeroRuote}/{idAlimentazione}/{idCategoria}/{idColore}/{marca}/{annoProduzione}/{modello}/{targa}")
 	public ResponseEntity<Object> multiFilterVeicolo(@RequestParam(required = false) Integer idVeicolo,
 			@RequestParam(required = false) VehicleType tipoVeicolo,
 			@RequestParam(required = false) Integer numerRuote,
@@ -65,13 +65,14 @@ public class VeicoloController {
 			@RequestParam(required = false) Integer idColore,
 			@RequestParam(required = false) String marca,
 			@RequestParam(required = false) Integer annoProduzione,
-			@RequestParam(required = false) String modello) {
+			@RequestParam(required = false) String modello,
+			@RequestParam(required = false) String targa) {
 		
 		Object response = null;
 		HttpStatus status = HttpStatus.OK;
 		
 		try {
-			response = veicoloS.multiFilter(idVeicolo, marca, modello, tipoVeicolo, idAlimentazione, idCategoria, annoProduzione, idColore, annoProduzione);
+			response = veicoloS.multiFilter(idVeicolo, marca, modello, tipoVeicolo, idAlimentazione, idCategoria, annoProduzione, idColore, annoProduzione, targa);
 		} catch (Exception e) {
 			e.printStackTrace();
 			status = HttpStatus.BAD_REQUEST;
