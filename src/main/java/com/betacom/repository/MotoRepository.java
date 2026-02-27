@@ -13,6 +13,6 @@ import com.betacom.models.Veicolo;
 
 @Repository
 public interface MotoRepository extends JpaRepository<Moto, Integer>{
-	@Query(name = "select.veicoloFilter")
-	List<Moto> searchByTipoVeicolo(@Param("tipoVeicolo") VehicleType tipoVeicolo);
+	/*@Query(name = "select.veicoloFilter")
+	List<Moto> searchByTipoVeicolo(@Param("tipoVeicolo") VehicleType tipoVeicolo);*/
 }

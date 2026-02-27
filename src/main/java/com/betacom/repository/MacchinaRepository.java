@@ -12,6 +12,6 @@ import com.betacom.models.Macchina;
 
 @Repository
 public interface MacchinaRepository extends JpaRepository<Macchina, Integer>{
-	@Query(name = "select.veicoloFilter")
-	List<Macchina> searchByTipoVeicolo(@Param("tipoVeicolo") VehicleType tipoVeicolo);
+	/*@Query(name = "select.veicoloFilter")
+	List<Macchina> searchByTipoVeicolo(@Param("tipoVeicolo") VehicleType tipoVeicolo);*/
 }

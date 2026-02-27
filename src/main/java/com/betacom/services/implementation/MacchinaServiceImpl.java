@@ -55,12 +55,26 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 	}
 
 
-	@Override
+	/*@Override
 	public void create(MacchinaDTOReq request) throws Exception {
 		log.debug("create {}", request);
 		
 		Macchina mac = new Macchina();
 		models.populateVeicolo(mac, request, VehicleType.MACCHINA);
+		mac.setPorte(request.getPorte());
+		mac.setTarga(request.getTarga());
+		mac.setCilindrata(request.getCilindrata());
+		
+		macchinaRepo.save(mac);
+	}*/
+	
+
+	@Override
+	public void create(MacchinaDTOReq request) throws Exception {
+		log.debug("create {}", request);
+		
+		Macchina mac = new Macchina();
+		models.populateVeicolo(mac, request);
 		mac.setPorte(request.getPorte());
 		mac.setTarga(request.getTarga());
 		mac.setCilindrata(request.getCilindrata());
@@ -96,6 +110,13 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 
 	@Override
 	public List<MacchinaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+/*
+	@Override
+	public List<MacchinaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
 		
 		List<Macchina> lM = macchinaRepo.searchByTipoVeicolo(tipoVeicolo);
 		
@@ -121,6 +142,6 @@ public class MacchinaServiceImpl implements InterfaceMacchinaService{
 	                        : null)
 		                    .build())
 		            .collect(Collectors.toList());
-	}
+	}*/
 
 }

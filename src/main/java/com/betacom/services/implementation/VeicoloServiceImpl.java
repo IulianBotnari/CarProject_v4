@@ -47,4 +47,31 @@ public class VeicoloServiceImpl implements InterfaceVeicoloService{
 		
 	}
 
+	@Override
+	public List<VeicoloDTORes> multiFilter(Integer idVeicolo,                
+	        String marca,
+	        String modello,
+	        String tipoVeicolo,
+	        Integer idAlimentazione,
+	        Integer idCategoria,
+	        Integer annoProduzione,
+	        Integer idColore,
+	        Integer numeroRuote) throws Exception {
+	    
+	    List<Veicolo> veicoliFiltrati = veicoloRepo.multiFilter(idVeicolo, marca, modello, tipoVeicolo, idAlimentazione, idCategoria, annoProduzione, idColore, numeroRuote);
+	    
+	    // Rimosso il cast errato (VeicoloDTORes)
+	    return veicoliFiltrati.stream().map(veic -> VeicoloDTORes.builder()
+	            .idVeicolo(veic.getIdVeicolo())
+	            .marca(veic.getMarca())
+	            .modello(veic.getModello())
+	            .tipoVeicolo(veic.getTipoVeicolo())
+	            .alimentazione(veic.getAlimentazione())
+	            .categoria(veic.getCategoria())
+	            .numeroRuote(veic.getNumeroRuote())
+	            .colore(veic.getColore())
+	            .annoProduzione(veic.getAnnoProduzione())
+	            .build()).collect(Collectors.toList());
+	}
+
 }

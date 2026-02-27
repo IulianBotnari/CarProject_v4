@@ -33,12 +33,31 @@ public class MotoServiceImpl implements InterfaceMotoService {
 
 		return listaMoto.stream().map(moto -> CostruttoreDTORes.createMotoDTORes(moto)).collect(Collectors.toList());
 	}
-
+/*
 	@Override
 	public void create(MotoDTOReq request) throws Exception {
 		System.out.println("Moto creata in create moto impl");
 		Moto result = new Moto();
 		models.populateVeicolo(result, request, VehicleType.MOTO);
+		result.setTarga(request.getTarga());
+		result.setCilindrata(request.getCilindrata());
+
+		System.out.println("Moto creata in create moto impl" + result.toString());
+
+		try {
+			motoRepo.save(result);
+		} catch (Exception e) {
+			System.out.println(
+					"Errore durante il salvataggio della moto: " + request.toString() + "\nErrore: " + e.getMessage());
+		}
+
+	}*/
+	
+	@Override
+	public void create(MotoDTOReq request) throws Exception {
+		System.out.println("Moto creata in create moto impl");
+		Moto result = new Moto();
+		models.populateVeicolo(result, request);
 		result.setTarga(request.getTarga());
 		result.setCilindrata(request.getCilindrata());
 
@@ -74,9 +93,17 @@ public class MotoServiceImpl implements InterfaceMotoService {
 
 	@Override
 	public List<MotoDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/*
+	@Override
+	public List<MotoDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
 		List<Moto> lM = motoRepo.searchByTipoVeicolo(tipoVeicolo);
 
 		return lM.stream().map(moto -> CostruttoreDTORes.createMotoDTORes(moto)).collect(Collectors.toList());
-	}
+	}*/
 
 }

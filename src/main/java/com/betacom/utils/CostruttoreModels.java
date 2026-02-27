@@ -58,7 +58,7 @@ public class CostruttoreModels {
 	    
 	}
 	
-
+/*
 
 	public void populateVeicolo(Veicolo v, VeicoloDTOReq request, VehicleType tipoVeicolo) throws Exception {
 	    v.setIdVeicolo(request.getIdVeicolo());
@@ -70,7 +70,21 @@ public class CostruttoreModels {
 	    v.setNumeroRuote(request.getNumeroRuote());
 	    v.setModello(request.getModello());
 	    v.setTipoVeicolo(tipoVeicolo);
+	}*/
+	
+	public void populateVeicolo(Veicolo v, VeicoloDTOReq request) throws Exception {
+	    v.setIdVeicolo(request.getIdVeicolo());
+	    v.setAnnoProduzione(request.getAnnoProduzione());
+	    v.setAlimentazione(createAlimentazione(request.getAlimentazione()));
+	    v.setCategoria(createCategoria(request.getCategoria()));
+	    v.setColore(createColore(request.getColore()));
+	    v.setMarca(request.getMarca());
+	    v.setNumeroRuote(request.getNumeroRuote());
+	    v.setModello(request.getModello());
+	    v.setTipoVeicolo(request.getTipoVeicolo());
 	}
+	
+	
 	
 
 	

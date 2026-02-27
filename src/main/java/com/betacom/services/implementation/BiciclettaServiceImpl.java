@@ -35,12 +35,35 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 		return null;
 	//	return listaBici.stream().map(bici -> CostruttoreDTORes.createBiciclettaDTORes(bicicletta)).collect(Collectors.toList());
 	}
-
+/*
 	@Override
 	public void create(BiciclettaDTOReq request) throws Exception {
 		System.out.println("Bicicletta creata in create bicicletta impl" );
 		Bicicletta result = new Bicicletta();
 		models.populateVeicolo(result, request, VehicleType.BICICLETTA);
+		result.setNumeroMarce(request.getNumeroMarce());
+		result.setFreno(models.createFreno(request.getFreno()));
+		result.setSospensione(models.createSospensione(request.getSospensione()));
+		
+		System.out.println("Bicicletta creata in create bicicletta impl" + result.toString());
+		
+		try {
+			biciclettaRepo.save(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Errore durante il salvataggio della bicicletta: " + request.toString() + "\nErrore: " + e.getMessage());
+		}
+	
+	 
+		
+	}*/
+	
+	
+	@Override
+	public void create(BiciclettaDTOReq request) throws Exception {
+		System.out.println("Bicicletta creata in create bicicletta impl" );
+		Bicicletta result = new Bicicletta();
+		models.populateVeicolo(result, request);
 		result.setNumeroMarce(request.getNumeroMarce());
 		result.setFreno(models.createFreno(request.getFreno()));
 		result.setSospensione(models.createSospensione(request.getSospensione()));
@@ -75,6 +98,13 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 		biciclettaRepo.delete(bici);
 	}
 
+
+	@Override
+	public List<BiciclettaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/*
 	@Override
 	public List<BiciclettaDTORes> searchByTipoVeicolo(VehicleType tipoVeicolo) throws Exception {
 		
@@ -82,6 +112,6 @@ public class BiciclettaServiceImpl implements InterfaceBiciclettaService{
 		
 			return lB.stream().map(bici -> CostruttoreDTORes.createBiciclettaDTORes(bici)).collect(Collectors.toList());
 
-	}
+	}*/
 
 }

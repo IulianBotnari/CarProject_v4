@@ -19,7 +19,7 @@ import lombok.experimental.SuperBuilder;
 public class VeicoloDTORes {
 	private Integer idVeicolo;
 	
-	private VehicleType tipoVeicolo;
+	private String tipoVeicolo;
 	
 	private Integer numeroRuote;
 	

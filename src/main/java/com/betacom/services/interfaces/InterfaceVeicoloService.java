@@ -15,4 +15,14 @@ public interface InterfaceVeicoloService {
 	
 	void delete(VeicoloDTOReq request) throws Exception;
 	
+	List<VeicoloDTORes> multiFilter(Integer idVeicolo,
+			String marca,
+			String modello,
+			String tipoVeicolo,
+			Integer idAlimentazione,
+			Integer idCategoria,
+			Integer annoProduzione,
+			Integer idColore,
+			Integer numeroRuote) throws Exception;
+	
 }
