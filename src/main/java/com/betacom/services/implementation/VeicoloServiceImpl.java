@@ -91,6 +91,7 @@ public class VeicoloServiceImpl implements InterfaceVeicoloService{
 	    		            .tipoVeicolo(mac.getTipoVeicolo())
 	    		            .alimentazione(mac.getAlimentazione())
 	    		            .categoria(mac.getCategoria())
+	    		            .porte(mac.getPorte())
 	    		            .numeroRuote(mac.getNumeroRuote())
 	    		            .colore(mac.getColore())
 	    		            .annoProduzione(mac.getAnnoProduzione())
