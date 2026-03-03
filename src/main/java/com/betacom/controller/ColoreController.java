@@ -62,7 +62,7 @@ public class ColoreController {
 	public ResponseEntity<Object> update(@RequestBody(required = true) ColoreDTOReq request){
 		Object response = null;
 		
-		HttpStatus status = HttpStatus.CREATED;
+		HttpStatus status = HttpStatus.OK;
 		
 		try {
 			System.out.println(request.toString());
@@ -81,7 +81,7 @@ public class ColoreController {
 	public ResponseEntity<Object> delete(@RequestParam(required = true) Integer id){
 		Object response = null;
 		
-		HttpStatus status = HttpStatus.CREATED;
+		HttpStatus status = HttpStatus.OK;
 		
 		try {
 			coloreS.delete(id);

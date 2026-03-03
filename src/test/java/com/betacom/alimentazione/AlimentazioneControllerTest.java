@@ -41,7 +41,7 @@ public class AlimentazioneControllerTest {
 		updateAlimentazioneError();
 		list();
 		deleteAlimentazione();
-		
+		deleteAlimentazioneError();
 	}
 
 	public void createAlimentazione() {
@@ -109,16 +109,23 @@ public class AlimentazioneControllerTest {
 	public void deleteAlimentazione() {
 		log.debug("******* delete alimentazione  *******");
 		
-		
 		ResponseEntity<Object> resp = alimC.delete(1);
-	
 		
 		assertEquals(HttpStatus.OK, resp.getStatusCode());
 		String r = (String) resp.getBody();
 		log.debug(r);
 		Assertions.assertThat(r).isEqualTo("Eliminazione completata");
+	}
+
+	public void deleteAlimentazioneError() {
+		log.debug("******* delete alimentazione  *******");
 		
-				
+		ResponseEntity<Object> resp = alimC.delete(9999999);
+		
+		assertEquals(HttpStatus.BAD_REQUEST, resp.getStatusCode());
+		String r = (String) resp.getBody();
+		log.debug(r);
+		Assertions.assertThat(r).isEqualTo("Eliminazione non riuscita");
 	}
 
 }
