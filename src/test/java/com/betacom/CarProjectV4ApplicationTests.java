@@ -8,12 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.betacom.alimentazione.AlimentazioneControllerTest;
 import com.betacom.categoria.CategoriaControllerTest;
 import com.betacom.colore.ColoreControllerTest;
+import com.betacom.freno.FrenoControllerTest;
 
 @Suite
 @SelectClasses({
 	AlimentazioneControllerTest.class,
 	ColoreControllerTest.class,
-	CategoriaControllerTest.class
+	CategoriaControllerTest.class,
+	FrenoControllerTest.class
 })
 
 @SpringBootTest

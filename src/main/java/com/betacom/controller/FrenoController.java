@@ -61,7 +61,7 @@ public class FrenoController {
 	public ResponseEntity<Object> update(@RequestBody(required = true) FrenoDTOReq request){
 		Object response = null;
 		
-		HttpStatus status = HttpStatus.CREATED;
+		HttpStatus status = HttpStatus.OK;
 		
 		try {
 			System.out.println(request.toString());
@@ -80,7 +80,7 @@ public class FrenoController {
 	public ResponseEntity<Object> delete(@RequestParam(required = true) Integer id){
 		Object response = null;
 		
-		HttpStatus status = HttpStatus.CREATED;
+		HttpStatus status = HttpStatus.OK;
 		
 		try {
 			frenoS.delete(id);
