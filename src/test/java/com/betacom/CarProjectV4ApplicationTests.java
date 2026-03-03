@@ -9,13 +9,15 @@ import com.betacom.alimentazione.AlimentazioneControllerTest;
 import com.betacom.categoria.CategoriaControllerTest;
 import com.betacom.colore.ColoreControllerTest;
 import com.betacom.freno.FrenoControllerTest;
+import com.betacom.sospensione.SospensioneControllerTest;
 
 @Suite
 @SelectClasses({
 	AlimentazioneControllerTest.class,
 	ColoreControllerTest.class,
 	CategoriaControllerTest.class,
-	FrenoControllerTest.class
+	FrenoControllerTest.class,
+	SospensioneControllerTest.class
 })
 
 @SpringBootTest

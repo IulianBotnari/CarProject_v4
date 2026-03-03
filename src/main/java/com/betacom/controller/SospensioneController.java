@@ -63,7 +63,7 @@ public class SospensioneController {
 	public ResponseEntity<Object> update(@RequestBody(required = true) SospensioneDTOReq request){
 		Object response = null;
 		
-		HttpStatus status = HttpStatus.CREATED;
+		HttpStatus status = HttpStatus.OK;
 		
 		try {
 			System.out.println(request.toString());
@@ -82,7 +82,7 @@ public class SospensioneController {
 	public ResponseEntity<Object> delete(@RequestParam(required = true) Integer id){
 		Object response = null;
 		
-		HttpStatus status = HttpStatus.CREATED;
+		HttpStatus status = HttpStatus.OK;
 		
 		try {
 			sospensioneService.delete(id);
