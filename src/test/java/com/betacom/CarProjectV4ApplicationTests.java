@@ -6,12 +6,14 @@ import org.junit.platform.suite.api.Suite;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.betacom.alimentazione.AlimentazioneControllerTest;
+import com.betacom.categoria.CategoriaControllerTest;
 import com.betacom.colore.ColoreControllerTest;
 
 @Suite
 @SelectClasses({
 	AlimentazioneControllerTest.class,
-	ColoreControllerTest.class
+	ColoreControllerTest.class,
+	CategoriaControllerTest.class
 })
 
 @SpringBootTest
